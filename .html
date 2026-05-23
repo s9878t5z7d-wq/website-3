@@ -1,0 +1,1024 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Vega Concrete LLC</title>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #0e0e0e;
+      --surface: #161616;
+      --surface2: #1f1f1f;
+      --border: #2a2a2a;
+      --accent: #d4a843;
+      --accent2: #b8873a;
+      --text: #e8e4dc;
+      --text-muted: #7a7570;
+      --text-dim: #4a4742;
+      --white: #f5f2ec;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'DM Sans', sans-serif;
+      overflow-x: hidden;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 48px;
+      height: 72px;
+      background: rgba(14,14,14,0.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav-logo {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.6rem;
+      letter-spacing: 0.08em;
+      color: var(--white);
+    }
+    .nav-logo span { color: var(--accent); }
+
+    .nav-links { display: flex; gap: 8px; }
+
+    .nav-links a {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.72rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      text-decoration: none;
+      padding: 8px 16px;
+      border-radius: 2px;
+      transition: color 0.2s, background 0.2s;
+    }
+    .nav-links a:hover, .nav-links a.active {
+      color: var(--accent);
+      background: rgba(212,168,67,0.08);
+    }
+
+    /* ── HERO ── */
+    #home {
+      min-height: 100vh;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      padding-top: 72px;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .hero-left {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 80px 64px 80px 80px;
+      position: relative;
+      z-index: 2;
+    }
+
+    .hero-tag {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.7rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 28px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .hero-tag::before {
+      content: '';
+      width: 32px; height: 1px;
+      background: var(--accent);
+    }
+
+    .hero-title {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(4rem, 8vw, 8rem);
+      line-height: 0.92;
+      letter-spacing: 0.02em;
+      color: var(--white);
+      margin-bottom: 32px;
+    }
+    .hero-title em {
+      font-style: normal;
+      color: var(--accent);
+      display: block;
+    }
+
+    .hero-desc {
+      font-size: 1.05rem;
+      line-height: 1.75;
+      color: var(--text-muted);
+      max-width: 420px;
+      margin-bottom: 48px;
+      font-weight: 300;
+    }
+
+    .hero-ctas { display: flex; gap: 16px; flex-wrap: wrap; }
+
+    .btn-primary {
+      background: var(--accent);
+      color: #0e0e0e;
+      font-family: 'DM Mono', monospace;
+      font-size: 0.72rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      padding: 16px 32px;
+      border: none; border-radius: 2px;
+      cursor: pointer; text-decoration: none;
+      font-weight: 500;
+      transition: background 0.2s, transform 0.15s;
+      display: inline-block;
+    }
+    .btn-primary:hover { background: var(--accent2); transform: translateY(-1px); }
+
+    .btn-ghost {
+      background: transparent;
+      color: var(--text);
+      font-family: 'DM Mono', monospace;
+      font-size: 0.72rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      padding: 15px 32px;
+      border: 1px solid var(--border);
+      border-radius: 2px;
+      cursor: pointer; text-decoration: none;
+      transition: border-color 0.2s, color 0.2s;
+      display: inline-block;
+    }
+    .btn-ghost:hover { border-color: var(--accent); color: var(--accent); }
+
+    .hero-stats {
+      display: flex; gap: 40px;
+      margin-top: 64px;
+      padding-top: 40px;
+      border-top: 1px solid var(--border);
+    }
+    .stat-num {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 2.4rem;
+      color: var(--white);
+      line-height: 1;
+    }
+    .stat-num span { color: var(--accent); }
+    .stat-label {
+      font-size: 0.72rem;
+      color: var(--text-muted);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-top: 4px;
+      font-family: 'DM Mono', monospace;
+    }
+
+    .hero-right {
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-img-grid {
+      position: absolute; inset: 0;
+      display: grid;
+      grid-template-rows: 1fr 1fr;
+      gap: 3px;
+    }
+    .hero-img-cell {
+      overflow: hidden;
+      position: relative;
+    }
+    .hero-img-cell::after {
+      content: '';
+      position: absolute; inset: 0;
+      background: linear-gradient(135deg, rgba(14,14,14,0.5) 0%, transparent 60%);
+    }
+    .hero-img-cell img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      filter: grayscale(20%) contrast(1.1);
+      transition: transform 6s ease;
+    }
+    .hero-img-cell:hover img { transform: scale(1.04); }
+
+    .hero-grid-label {
+      position: absolute;
+      bottom: 16px; right: 16px;
+      font-family: 'DM Mono', monospace;
+      font-size: 0.62rem;
+      letter-spacing: 0.15em;
+      color: rgba(255,255,255,0.4);
+      z-index: 2;
+      text-transform: uppercase;
+    }
+
+    .hero-diagonal {
+      position: absolute;
+      top: 0; bottom: 0;
+      left: -40px;
+      width: 80px;
+      background: var(--bg);
+      transform: skewX(-3deg);
+      z-index: 3;
+    }
+
+    /* ── SERVICES BAND ── */
+    .services-band {
+      background: var(--accent);
+      padding: 20px 80px;
+      display: flex; gap: 48px;
+      overflow: hidden;
+      white-space: nowrap;
+    }
+    .services-band span {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.1rem;
+      letter-spacing: 0.1em;
+      color: #0e0e0e;
+      flex-shrink: 0;
+    }
+    .services-band .sep {
+      color: rgba(0,0,0,0.3);
+      margin: 0 8px;
+    }
+
+    /* ── SECTIONS ── */
+    section { padding: 120px 80px; }
+
+    .section-header {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      margin-bottom: 64px;
+    }
+
+    .section-eyebrow {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.7rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 16px;
+      display: flex; align-items: center; gap: 12px;
+    }
+    .section-eyebrow::before {
+      content: '';
+      width: 24px; height: 1px;
+      background: var(--accent);
+    }
+
+    .section-title {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(2.8rem, 5vw, 4.5rem);
+      line-height: 1;
+      letter-spacing: 0.02em;
+      color: var(--white);
+    }
+
+    /* ── ABOUT / SERVICES ── */
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: start;
+    }
+
+    .about-text {
+      font-size: 1rem;
+      line-height: 1.8;
+      color: var(--text-muted);
+      font-weight: 300;
+    }
+    .about-text p + p { margin-top: 20px; }
+
+    .services-list { display: flex; flex-direction: column; gap: 2px; }
+
+    .service-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 20px 24px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 2px;
+      transition: border-color 0.2s, background 0.2s;
+      cursor: default;
+    }
+    .service-item:hover {
+      border-color: var(--accent);
+      background: var(--surface2);
+    }
+    .service-name {
+      font-size: 0.95rem;
+      font-weight: 500;
+      color: var(--white);
+    }
+    .service-num {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.68rem;
+      color: var(--text-dim);
+      letter-spacing: 0.1em;
+    }
+    .service-arrow {
+      color: var(--accent);
+      opacity: 0;
+      transition: opacity 0.2s;
+      font-size: 1rem;
+    }
+    .service-item:hover .service-arrow { opacity: 1; }
+
+    /* ── GALLERY ── */
+    #gallery { background: var(--surface); }
+
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      grid-template-rows: 280px 280px;
+      gap: 3px;
+    }
+
+    .gallery-item {
+      position: relative;
+      overflow: hidden;
+      cursor: pointer;
+    }
+    .gallery-item:first-child {
+      grid-column: span 2;
+    }
+    .gallery-item:nth-child(4) {
+      grid-column: span 2;
+    }
+
+    .gallery-item img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      filter: grayscale(15%) contrast(1.05);
+      transition: transform 0.5s ease, filter 0.4s ease;
+    }
+    .gallery-item:hover img {
+      transform: scale(1.06);
+      filter: grayscale(0%) contrast(1.1);
+    }
+
+    .gallery-overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(to top, rgba(14,14,14,0.85) 0%, transparent 55%);
+      opacity: 0;
+      transition: opacity 0.3s;
+      display: flex; align-items: flex-end;
+      padding: 24px;
+    }
+    .gallery-item:hover .gallery-overlay { opacity: 1; }
+
+    .gallery-label {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.7rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--accent);
+    }
+
+    /* ── REVIEWS ── */
+    #reviews { background: var(--bg); }
+
+    .reviews-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2px;
+    }
+
+    .review-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      padding: 40px 36px;
+      border-radius: 2px;
+      transition: border-color 0.2s;
+    }
+    .review-card:hover { border-color: var(--accent); }
+
+    .review-stars {
+      display: flex; gap: 4px;
+      margin-bottom: 24px;
+    }
+    .star { color: var(--accent); font-size: 1rem; }
+
+    .review-text {
+      font-size: 0.95rem;
+      line-height: 1.75;
+      color: var(--text-muted);
+      font-weight: 300;
+      margin-bottom: 32px;
+      font-style: italic;
+    }
+    .review-text::before { content: '\201C'; }
+    .review-text::after  { content: '\201D'; }
+
+    .review-author {
+      display: flex; align-items: center; gap: 14px;
+      border-top: 1px solid var(--border);
+      padding-top: 24px;
+    }
+    .review-avatar {
+      width: 40px; height: 40px;
+      border-radius: 50%;
+      background: var(--accent);
+      display: flex; align-items: center; justify-content: center;
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1rem;
+      color: #0e0e0e;
+      flex-shrink: 0;
+    }
+    .review-name {
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: var(--white);
+    }
+    .review-meta {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.65rem;
+      color: var(--text-dim);
+      letter-spacing: 0.08em;
+      margin-top: 2px;
+    }
+
+    .review-cta {
+      text-align: center;
+      margin-top: 56px;
+    }
+    .review-cta p {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      margin-bottom: 20px;
+    }
+
+    /* ── CONTACT ── */
+    #contact { background: var(--surface); }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1.4fr;
+      gap: 80px;
+    }
+
+    .contact-info { }
+
+    .contact-block {
+      margin-bottom: 40px;
+    }
+    .contact-block-label {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.65rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 10px;
+    }
+    .contact-block-value {
+      font-size: 1rem;
+      color: var(--text);
+      font-weight: 400;
+      line-height: 1.6;
+    }
+    .contact-block-value a {
+      color: var(--text);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .contact-block-value a:hover { color: var(--accent); }
+
+    .contact-form { display: flex; flex-direction: column; gap: 16px; }
+
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+
+    .form-group { display: flex; flex-direction: column; gap: 8px; }
+
+    .form-label {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.65rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+    }
+
+    .form-input, .form-select, .form-textarea {
+      background: var(--surface2);
+      border: 1px solid var(--border);
+      border-radius: 2px;
+      padding: 14px 16px;
+      color: var(--text);
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.95rem;
+      transition: border-color 0.2s;
+      outline: none;
+      width: 100%;
+    }
+    .form-input:focus, .form-select:focus, .form-textarea:focus {
+      border-color: var(--accent);
+    }
+    .form-input::placeholder, .form-textarea::placeholder {
+      color: var(--text-dim);
+    }
+    .form-select {
+      appearance: none;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%237a7570' stroke-width='1.5' fill='none'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 16px center;
+      cursor: pointer;
+    }
+    .form-select option { background: var(--surface2); }
+    .form-textarea { resize: vertical; min-height: 120px; }
+
+    .form-submit {
+      margin-top: 8px;
+      align-self: flex-start;
+    }
+
+    .form-success {
+      display: none;
+      padding: 16px 20px;
+      background: rgba(212,168,67,0.1);
+      border: 1px solid var(--accent);
+      border-radius: 2px;
+      color: var(--accent);
+      font-family: 'DM Mono', monospace;
+      font-size: 0.8rem;
+      letter-spacing: 0.05em;
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      background: #0a0a0a;
+      border-top: 1px solid var(--border);
+      padding: 48px 80px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .footer-logo {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.4rem;
+      letter-spacing: 0.08em;
+      color: var(--white);
+    }
+    .footer-logo span { color: var(--accent); }
+
+    .footer-copy {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.65rem;
+      color: var(--text-dim);
+      letter-spacing: 0.1em;
+    }
+
+    .footer-links { display: flex; gap: 24px; }
+    .footer-links a {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.65rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--text-dim);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .footer-links a:hover { color: var(--accent); }
+
+    /* ── ANIMATIONS ── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    .fade-up { opacity: 0; }
+    .fade-up.visible { animation: fadeUp 0.6s ease forwards; }
+    .fade-up:nth-child(2) { animation-delay: 0.1s; }
+    .fade-up:nth-child(3) { animation-delay: 0.2s; }
+    .fade-up:nth-child(4) { animation-delay: 0.3s; }
+    .fade-up:nth-child(5) { animation-delay: 0.4s; }
+
+    /* ── PAGE SECTIONS (show/hide) ── */
+    .page-section { display: none; }
+    .page-section.active { display: block; }
+    #home.page-section.active { display: grid; }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 1024px) {
+      nav { padding: 0 24px; }
+      section { padding: 80px 40px; }
+      .hero-left { padding: 60px 40px; }
+      .about-grid, .contact-grid { grid-template-columns: 1fr; gap: 48px; }
+      .reviews-grid { grid-template-columns: 1fr 1fr; }
+    }
+
+    @media (max-width: 768px) {
+      #home { grid-template-columns: 1fr; }
+      .hero-right { display: none; }
+      .nav-links a { font-size: 0.62rem; padding: 6px 10px; }
+      .gallery-grid { grid-template-columns: 1fr 1fr; grid-template-rows: auto; }
+      .gallery-item:first-child, .gallery-item:nth-child(4) { grid-column: span 1; }
+      .reviews-grid { grid-template-columns: 1fr; }
+      .form-row { grid-template-columns: 1fr; }
+      footer { flex-direction: column; gap: 24px; text-align: center; }
+      section { padding: 64px 24px; }
+      .services-band { padding: 20px 24px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <div class="nav-logo">Vega <span>Concrete</span> LLC</div>
+    <div class="nav-links">
+      <a href="#" onclick="showPage('home')" class="active" id="nav-home">Home</a>
+      <a href="#" onclick="showPage('gallery')" id="nav-gallery">Gallery</a>
+      <a href="#" onclick="showPage('reviews')" id="nav-reviews">Reviews</a>
+      <a href="#" onclick="showPage('contact')" id="nav-contact">Contact</a>
+    </div>
+  </nav>
+
+  <!-- ════ HOME ════ -->
+  <div id="home" class="page-section active">
+
+    <div class="hero-left">
+      <div class="hero-tag">Fort Wayne, Indiana · Est. 2022</div>
+      <h1 class="hero-title">
+        Built to<br>
+        <em>Last.</em>
+      </h1>
+      <p class="hero-desc">
+        Vega Concrete LLC delivers precision flatwork, structural foundations, and decorative concrete for residential and commercial projects across the greater Fort Wayne area.
+      </p>
+      <div class="hero-ctas">
+        <a href="#" class="btn-primary" onclick="showPage('contact')">Get a Free Quote</a>
+        <a href="#" class="btn-ghost" onclick="showPage('gallery')">View Our Work</a>
+      </div>
+      <div class="hero-stats">
+        <div>
+          <div class="stat-num">4<span>+</span></div>
+          <div class="stat-label">Years Operating</div>
+        </div>
+        <div>
+          <div class="stat-num">500<span>+</span></div>
+          <div class="stat-label">Projects Done</div>
+        </div>
+        <div>
+          <div class="stat-num">100<span>%</span></div>
+          <div class="stat-label">Licensed & Insured</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="hero-right">
+      <div class="hero-diagonal"></div>
+      <div class="hero-img-grid">
+        <div class="hero-img-cell">
+          <img src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=900&q=80" alt="Concrete driveway" />
+          <span class="hero-grid-label">Driveway · Residential</span>
+        </div>
+        <div class="hero-img-cell">
+          <img src="https://images.unsplash.com/photo-1590012314607-cda9d9b699ae?w=900&q=80" alt="Concrete foundation" />
+          <span class="hero-grid-label">Foundation · Commercial</span>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- end home -->
+
+  <!-- SERVICES BAND -->
+  <div class="services-band" id="services-band">
+    <span>Driveways <span class="sep">·</span> Foundations <span class="sep">·</span> Stamped Concrete <span class="sep">·</span> Patios <span class="sep">·</span> Retaining Walls <span class="sep">·</span> Flatwork <span class="sep">·</span> Sidewalks <span class="sep">·</span> Parking Lots <span class="sep">·</span> Pool Decks</span>
+  </div>
+
+  <!-- ABOUT (part of home flow) -->
+  <section id="about-section" class="page-section active">
+    <div class="section-header">
+      <div>
+        <div class="section-eyebrow">Who We Are</div>
+        <h2 class="section-title">Fort Wayne's Most<br>Trusted Concrete Crew</h2>
+      </div>
+    </div>
+    <div class="about-grid">
+      <div class="about-text fade-up">
+        <p>Vega Concrete LLC was founded on a simple principle: do the job right, every single time. For over 4 years, we've been pouring concrete across the Fort Wayne metro — from backyard patios to large commercial foundations.</p>
+        <p>Every project starts with honest communication and a detailed plan. We show up on time, use top-grade materials, and leave your site clean. Our crews are experienced, our work is guaranteed, and our prices are fair.</p>
+        <p>Whether you need a new driveway, a stamped decorative patio, or a full structural foundation, Vega Concrete has the equipment and expertise to get it done.</p>
+      </div>
+      <div class="services-list fade-up">
+        <div class="service-item"><span class="service-name">Residential Driveways & Aprons</span><span class="service-num">01</span><span class="service-arrow">→</span></div>
+        <div class="service-item"><span class="service-name">Stamped & Decorative Concrete</span><span class="service-num">02</span><span class="service-arrow">→</span></div>
+        <div class="service-item"><span class="service-name">Patios & Outdoor Living Areas</span><span class="service-num">03</span><span class="service-arrow">→</span></div>
+        <div class="service-item"><span class="service-name">Foundations & Footings</span><span class="service-num">04</span><span class="service-arrow">→</span></div>
+        <div class="service-item"><span class="service-name">Retaining Walls & Steps</span><span class="service-num">05</span><span class="service-arrow">→</span></div>
+        <div class="service-item"><span class="service-name">Commercial Flatwork & Parking Lots</span><span class="service-num">06</span><span class="service-arrow">→</span></div>
+        <div class="service-item"><span class="service-name">Sidewalks & Walkways</span><span class="service-num">07</span><span class="service-arrow">→</span></div>
+        <div class="service-item"><span class="service-name">Pool Surrounds & Decks</span><span class="service-num">08</span><span class="service-arrow">→</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════ GALLERY ════ -->
+  <section id="gallery" class="page-section">
+    <div class="section-header">
+      <div>
+        <div class="section-eyebrow">Portfolio</div>
+        <h2 class="section-title">Our Work<br>Speaks Volumes</h2>
+      </div>
+    </div>
+    <div class="gallery-grid">
+      <div class="gallery-item fade-up">
+        <img src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=1200&q=80" alt="Stamped concrete patio" />
+        <div class="gallery-overlay"><span class="gallery-label">Stamped Patio · Fort Wayne, INChesterfield, MO</span></div>
+      </div>
+      <div class="gallery-item fade-up">
+        <img src="https://images.unsplash.com/photo-1590012314607-cda9d9b699ae?w=600&q=80" alt="Concrete foundation" />
+        <div class="gallery-overlay"><span class="gallery-label">Foundation · Fort Wayne, IN</span></div>
+      </div>
+      <div class="gallery-item fade-up">
+        <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&q=80" alt="Concrete driveway" />
+        <div class="gallery-overlay"><span class="gallery-label">Driveway · Fort Wayne, IN</span></div>
+      </div>
+      <div class="gallery-item fade-up">
+        <img src="https://images.unsplash.com/photo-1600585154526-990dced4db0d?w=1200&q=80" alt="Concrete walkway" />
+        <div class="gallery-overlay"><span class="gallery-label">Walkway & Steps · Fort Wayne, IN</span></div>
+      </div>
+      <div class="gallery-item fade-up">
+        <img src="https://images.unsplash.com/photo-1580587771525-78b9dba3b914?w=600&q=80" alt="Concrete pool deck" />
+        <div class="gallery-overlay"><span class="gallery-label">Pool Deck · Hicksville, OH</span></div>
+      </div>
+      <div class="gallery-item fade-up">
+        <img src="https://images.unsplash.com/photo-1572120360610-d971b9d7767c?w=600&q=80" alt="Retaining wall" />
+        <div class="gallery-overlay"><span class="gallery-label">Retaining Wall · Huntertown, IN</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ════ REVIEWS ════ -->
+  <section id="reviews" class="page-section">
+    <div class="section-header">
+      <div>
+        <div class="section-eyebrow">Customer Reviews</div>
+        <h2 class="section-title">What Our Clients<br>Are Saying</h2>
+      </div>
+    </div>
+    <div class="reviews-grid">
+
+      <div class="review-card fade-up">
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text">Vega Concrete replaced our crumbling driveway and did an incredible job. Clean edges, no cracks, finished ahead of schedule. The crew was professional from start to finish.</p>
+        <div class="review-author">
+          <div class="review-avatar">MR</div>
+          <div>
+            <div class="review-name">Mike R.</div>
+            <div class="review-meta">Chesterfield, MO · Driveway Replacement</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="review-card fade-up">
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text">Had a large stamped patio poured last spring. It turned out absolutely beautiful — better than I imagined. Neighbors keep asking who did it. Highly recommend.</p>
+        <div class="review-author">
+          <div class="review-avatar">SL</div>
+          <div>
+            <div class="review-name">Sandra L.</div>
+            <div class="review-meta">Kirkwood, MO · Stamped Patio</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="review-card fade-up">
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text">Used Vega for our commercial parking lot. They handled everything, permits included. Fair price, quality work, and no headaches. Will use them again for our next property.</p>
+        <div class="review-author">
+          <div class="review-avatar">DT</div>
+          <div>
+            <div class="review-name">David T.</div>
+            <div class="review-meta">Creve Coeur, MO · Commercial Parking Lot</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="review-card fade-up">
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text">They came out same week for an estimate, gave us a fair quote, and started within days. The retaining wall looks great and has held up perfectly through two winters.</p>
+        <div class="review-author">
+          <div class="review-avatar">JP</div>
+          <div>
+            <div class="review-name">Jessica P.</div>
+            <div class="review-meta">Webster Groves, MO · Retaining Wall</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="review-card fade-up">
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text">Our pool deck was a complete disaster — cracked, uneven, and faded. Vega tore it out and poured a beautiful new deck in just two days. Worth every penny.</p>
+        <div class="review-author">
+          <div class="review-avatar">BN</div>
+          <div>
+            <div class="review-name">Brian N.</div>
+            <div class="review-meta">Ladue, MO · Pool Deck Replacement</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="review-card fade-up">
+        <div class="review-stars">★★★★★</div>
+        <p class="review-text">Got quotes from three companies and Vega was the most transparent. They explained every step, stuck to the price, and delivered excellent work on our front walkway and steps.</p>
+        <div class="review-author">
+          <div class="review-avatar">AC</div>
+          <div>
+            <div class="review-name">Amanda C.</div>
+            <div class="review-meta">Clayton, MO · Walkway & Steps</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="review-cta">
+      <p>Happy with our work? Leave us a review and help others find quality concrete services.</p>
+      <a href="https://www.google.com/maps" target="_blank" class="btn-primary">Leave a Google Review</a>
+    </div>
+  </section>
+
+  <!-- ════ CONTACT ════ -->
+  <section id="contact" class="page-section">
+    <div class="section-header">
+      <div>
+        <div class="section-eyebrow">Get In Touch</div>
+        <h2 class="section-title">Request a<br>Free Estimate</h2>
+      </div>
+    </div>
+
+    <div class="contact-grid">
+      <div class="contact-info">
+        <div class="contact-block">
+          <div class="contact-block-label">Phone</div>
+          <div class="contact-block-value"><a href="tel:+13145550182">(260) 312-8364</a></div>
+        </div>
+        <div class="contact-block">
+          <div class="contact-block-label">Email</div>
+          <div class="contact-block-value"><a href="mailto:info@vegaconcretellc.com">vegaconcretellc@outlook.com</a></div>
+        </div>
+        <div class="contact-block">
+          <div class="contact-block-label">Service Area</div>
+          <div class="contact-block-value">Fort Wayne City & County<br>Noble County<br>DeKalb County<br>Whitley County<br>Wells County<br>Adams County</div>
+        </div>
+        <div class="contact-block">
+          <div class="contact-block-label">Hours</div>
+          <div class="contact-block-value">Mon – Fri: 7:00 AM – 6:00 PM<br>Saturday: 8:00 AM – 3:00 PM<br>Sunday: Closed</div>
+        </div>
+        <div class="contact-block">
+          <div class="contact-block-label">License</div>
+          <div class="contact-block-value">IN Contractor Lic. #2024-8841<br>Fully Insured · Bonded</div>
+        </div>
+      </div>
+
+      <div>
+        <div class="contact-form" id="contactForm">
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label">First Name</label>
+              <input class="form-input" type="text" placeholder="John" id="fname" />
+            </div>
+            <div class="form-group">
+              <label class="form-label">Last Name</label>
+              <input class="form-input" type="text" placeholder="Smith" id="lname" />
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label">Phone</label>
+              <input class="form-input" type="tel" placeholder="(260) 312-8364" id="phone" />
+            </div>
+            <div class="form-group">
+              <label class="form-label">Email</label>
+              <input class="form-input" type="email" placeholder="vegaconcretellc.com" id="email" />
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Service Needed</label>
+            <select class="form-select" id="service">
+              <option value="" disabled selected>Select a service...</option>
+              <option>Driveway or Apron</option>
+              <option>Stamped / Decorative Concrete</option>
+              <option>Patio or Outdoor Area</option>
+              <option>Foundation or Footings</option>
+              <option>Retaining Wall</option>
+              <option>Sidewalk or Walkway</option>
+              <option>Pool Deck</option>
+              <option>Commercial Flatwork / Parking Lot</option>
+              <option>Other / Not Sure</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Project Details</label>
+            <textarea class="form-textarea" placeholder="Tell us about your project — size, timeline, any specific needs..." id="details"></textarea>
+          </div>
+          <div class="form-submit">
+            <button class="btn-primary" onclick="submitForm()">Send Request</button>
+          </div>
+          <div class="form-success" id="formSuccess">
+            ✓ &nbsp; Message received — we'll reach out within 1 business day.
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer id="main-footer">
+    <div class="footer-logo">Vega <span>Concrete</span> LLC</div>
+    <div class="footer-copy">© 2025 Vega Concrete LLC · Fort Wayne, IN · All rights reserved</div>
+    <div class="footer-links">
+      <a href="#" onclick="showPage('home')">Home</a>
+      <a href="#" onclick="showPage('gallery')">Gallery</a>
+      <a href="#" onclick="showPage('reviews')">Reviews</a>
+      <a href="#" onclick="showPage('contact')">Contact</a>
+    </div>
+  </footer>
+
+  <script>
+    // Page routing
+    function showPage(page) {
+      const allSections = document.querySelectorAll('.page-section');
+      allSections.forEach(s => s.classList.remove('active'));
+
+      const allNavLinks = document.querySelectorAll('.nav-links a');
+      allNavLinks.forEach(a => a.classList.remove('active'));
+
+      const servicesBand = document.getElementById('services-band');
+      const aboutSection = document.getElementById('about-section');
+
+      if (page === 'home') {
+        document.getElementById('home').classList.add('active');
+        document.getElementById('about-section').classList.add('active');
+        servicesBand.style.display = 'flex';
+        document.getElementById('nav-home').classList.add('active');
+      } else {
+        servicesBand.style.display = 'none';
+        document.getElementById(page).classList.add('active');
+        document.getElementById('nav-' + page).classList.add('active');
+      }
+
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+      triggerFadeUps();
+      return false;
+    }
+
+    // Scroll-triggered fade animations
+    function triggerFadeUps() {
+      setTimeout(() => {
+        const els = document.querySelectorAll('.fade-up:not(.visible)');
+        els.forEach((el, i) => {
+          const active = el.closest('.page-section.active, #home.active, #about-section.active');
+          if (active) {
+            setTimeout(() => el.classList.add('visible'), i * 80);
+          }
+        });
+      }, 50);
+    }
+
+    // Intersection observer for scroll reveal
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) e.target.classList.add('visible');
+      });
+    }, { threshold: 0.15 });
+
+    document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+
+    // Form submit
+    function submitForm() {
+      const fname = document.getElementById('fname').value.trim();
+      const email = document.getElementById('email').value.trim();
+      if (!fname || !email) {
+        alert('Please fill in your name and email to continue.');
+        return;
+      }
+      document.getElementById('formSuccess').style.display = 'block';
+      document.getElementById('fname').value = '';
+      document.getElementById('lname').value = '';
+      document.getElementById('phone').value = '';
+      document.getElementById('email').value = '';
+      document.getElementById('service').value = '';
+      document.getElementById('details').value = '';
+      setTimeout(() => {
+        document.getElementById('formSuccess').style.display = 'none';
+      }, 5000);
+    }
+
+    // Init
+    triggerFadeUps();
+  </script>
+</body>
+</html>
